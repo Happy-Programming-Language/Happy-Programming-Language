@@ -62,6 +62,7 @@ var (
 		},
 		"pop": SymbolTableValue{
 			Type: EXTERNALFUNC,
+			// we need a way to specify the types of arguments that we expect (inorder :))
 			Value: ExternalFunctionNode{
 				Name:       "pop",
 				ParamCount: 1,

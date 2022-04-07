@@ -7,9 +7,8 @@ make: *** No rule to make target 'all'.  Stop.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
-# Make data base, printed on Wed Apr 06 21:11:30 2022
+# Make data base, printed on Thu Apr 07 13:02:36 2022
 
 # Variables
 
@@ -26,7 +25,7 @@ USERPROFILE = C:\Users\USER
 # environment
 LOCALAPPDATA = C:\Users\USER\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-efe2949f-238e-40d9-a24f-89b38f720303-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-39852d42-9825-4d81-b6f4-358e4ee1ca7e-sock
 # environment
 WSLENV = WT_SESSION::WT_PROFILE_ID
 # environment
@@ -82,7 +81,7 @@ CURDIR := c:/Users/USER/langjam2021/simpleLang
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
 # environment
@@ -226,8 +225,7 @@ VSCODE_CLI = 1
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
 # default
-.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment g 
-rouped-target extra-prereqs archives jobserver output-sync load
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync load
 # environment
 MIC_LD_LIBRARY_PATH = C:\Program Files (x86)\Common Files\Intel\Shared Libraries\compiler\lib\intel64_win_mic
 # environment
@@ -296,6 +294,6 @@ build:
 # strcache performance: lookups = 33 / hit rate = 18%
 # hash-table stats:
 # Load=27/8192=0%, Rehash=0, Collisions=0/33=0%
-# Finished Make data base on Wed Apr 06 21:11:30 2022
+# Finished Make data base on Thu Apr 07 13:02:36 2022
 
  

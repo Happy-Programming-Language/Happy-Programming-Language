@@ -11,6 +11,7 @@ const (
 	NULL Types = iota
 	NUMBER
 	PARAMETER
+	ANY // used for parameters ( first :) )
 	STRING
 	FUNCTION
 	ARRAY
@@ -95,6 +96,10 @@ func (typecheck *TypeChecker) _typecheck(node interface{}) Types {
 			typecheck.symbolsTable.PushContext()
 			defer typecheck.symbolsTable.PopContext()
 
+			// the function type has params and the output ()
+			
+
+			// can we type check the parameters ( draw, something up )
 			// inject the parameters into the scope
 			// for _, param := range _node.Params {
 			// 	param.Key

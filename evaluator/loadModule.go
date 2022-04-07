@@ -52,12 +52,6 @@ func (eval *Evaluator) LoadModule(module Import) ExceptionNode {
 		module.FileName += ".happ"
 	}
 
-	// should find the actual root folder of the stuff then get the files from there
-
-	// check if the
-
-	// system includes
-	// filepath.Base(path)
 	importPath := ""
 
 	if isSystemImport {

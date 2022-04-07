@@ -1,2 +1,5 @@
-def a = 67 + "sample"
-print(a)
+fun sample(name) {
+    return "This is the sum of the stuff {67 + name}"
+}
+
+print(sample(78))
