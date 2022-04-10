@@ -1,4 +1,4 @@
-# Happy Programming Language
+### Happy Programming Language
 > The language is still being heavily developed any bugs, bad coding practices etc will be corrected in due time
 > This is a simple experimental programming language that am intending for it to become big :)
 
@@ -12,7 +12,7 @@ print("Hello world")
 
 # FEATURES
 
-> objects | dicts
+#### objects | dicts
 ```kotlin
 def sample = {
         name: "john",
@@ -25,7 +25,7 @@ def sample = {
 print(sample["name"]) #prints 'john'
 ```
 
-> exception handling
+#### exception handling
 ```kotlin
 def InvalidCallback = "InvalidCallback"
 def InvalidArgumentType = "InvalidArgumentType"
