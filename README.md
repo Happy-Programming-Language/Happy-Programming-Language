@@ -6,12 +6,27 @@
 > The parser is not well implemented yet, the evaluator has massive code repetitions and alot more but hey it works :)
 
 #### hello world
-```
+```kotlin
 print("Hello world")
 ```
 
-#### exception handling
+# FEATURES
+
+> objects | dicts
+```kotlin
+def sample = {
+        name: "john",
+        age: 24,
+        compute: fun () {
+            return "Hello World"
+        }
+    }
+
+print(sample["name"]) #prints 'john'
 ```
+
+> exception handling
+```kotlin
 def InvalidCallback = "InvalidCallback"
 def InvalidArgumentType = "InvalidArgumentType"
 
