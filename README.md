@@ -12,7 +12,7 @@ print("Hello world")
 
 # FEATURES
 
-> objects | dicts
+#### objects | dicts
 ```kotlin
 def sample = {
         name: "john",
@@ -25,7 +25,7 @@ def sample = {
 print(sample["name"]) #prints 'john'
 ```
 
-> exception handling
+#### exception handling
 ```kotlin
 def InvalidCallback = "InvalidCallback"
 def InvalidArgumentType = "InvalidArgumentType"
