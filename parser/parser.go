@@ -47,7 +47,7 @@ func (parser *Parser) popFromParsingState() {
 }
 
 // we have to think we cannot have a break in a function alone
-// so in break the top state must be loo_state
+// so in break the top state must be loop_state
 // for return the parent state must be the function state
 func (parser *Parser) EnsureCurrentParsingStateIs(state ParsingState, dig bool) bool {
 	if dig {
@@ -200,6 +200,10 @@ func (parser *Parser) _parseFactor() interface{} {
 			Type:  INTEGER,
 			Value: *_number,
 		}
+	} else if IsTypeAndValue(_currentToken, CURLY_BRACES, "{") {
+		// parse an object (:)
+		// parser.eatToken() // eat the {
+		return parser._parseDict()
 	} else if IsTypeAndValue(_currentToken, SQUARE_BRACKET, "[") {
 		// start parsing the array here
 		// consume the first square bracke
@@ -588,6 +592,7 @@ func (parser *Parser) _parse(token Token) interface{} {
 		}
 	case CURLY_BRACES:
 		{
+			// we also have to find a way to pass a dict
 			return parser.parseBlockScope()
 		}
 	default:

@@ -132,36 +132,15 @@ func (lexer *Lexer) Lex() []Token {
 
 			if lexer.peakAhead() == '=' {
 				lexer.eatLexeme()
-
-				// tokens = append(tokens, Token{
-				// 	Type:  CONDITION,
-				// 	Value: "!=",
-				// })
-
 				lexer.AppendToken(CONDITION, "!=", lexer.currentPosition-1-_current_column_)
 			}
 
 		} else if lexeme == '=' {
-			// check the next if its a another =
-			// _current_column_ := lexer.currentPosition
-			// return the condition token
-			// _peakAheadLexeme := lexer.peakAhead()
-
 			if lexer.peakAhead() == '=' {
 				lexer.eatLexeme()
 
-				// tokens = append(tokens, Token{
-				// 	Type:  CONDITION,
-				// 	Value: "==",
-				// })
-
 				lexer.AppendToken(CONDITION, "==", 2)
 			} else {
-				// tokens = append(tokens, Token{
-				// 	Type:  ASSIGN,
-				// 	Value: "=",
-				// })
-
 				lexer.AppendToken(ASSIGN, "=", 1)
 			}
 		} else if strings.Contains(`"'`, string(lexeme)) {

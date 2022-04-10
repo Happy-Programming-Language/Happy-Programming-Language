@@ -173,6 +173,15 @@ type ArrayAccessorNode struct {
 	EndIndex interface{} // also an expression
 }
 
+type DictElementNode struct {
+	Key   VariableNode
+	Value interface{}
+}
+
+type DictNode struct {
+	Elements []DictElementNode
+}
+
 type ArrayNode struct {
 	Elements []interface{}
 }

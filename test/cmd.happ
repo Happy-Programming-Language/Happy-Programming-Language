@@ -1,0 +1,36 @@
+# this is a simple program that reads your stuff from the cmd
+# and then prints it out
+
+# fun readCmdInput() {
+#     # print()
+#     print("Enter your name: ")
+#     def name = read()
+#     print(name)
+# }
+
+# readCmdInput()
+
+fun simple_evaluator(code_string) {
+    for (def position = 0; position < len(code_string); position + 1) {
+        if (code_string[position] == "+") {
+            print("{code_string[position - 1]} + {code_string[position + 1]}")
+        }
+    }
+}
+
+fun simple_repl() {
+    print(">>> ")
+
+    for (true) {
+        def input = read()
+
+        if (input == "quit") {
+            break
+        }
+        # print("Hello, {input}")
+        simple_evaluator(input)
+        print(">>> ")
+    }
+}
+
+simple_repl()

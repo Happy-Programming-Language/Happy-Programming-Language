@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Apr 07 13:02:36 2022
+# Make data base, printed on Fri Apr 08 13:03:36 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ USERPROFILE = C:\Users\USER
 # environment
 LOCALAPPDATA = C:\Users\USER\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-39852d42-9825-4d81-b6f4-358e4ee1ca7e-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-326e9e12-1765-4f89-9a55-b1025b301d68-sock
 # environment
 WSLENV = WT_SESSION::WT_PROFILE_ID
 # environment
@@ -45,7 +45,7 @@ GOPATH = C:\Users\USER\go
 # automatic
 @D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_18548_UJRZHAOOGWXDPXXT
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_8976_UMITSPTCLBXTSBGA
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
@@ -81,7 +81,7 @@ CURDIR := c:/Users/USER/langjam2021/simpleLang
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # automatic
 *D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
 # environment
@@ -101,7 +101,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 18548
+VSCODE_PID = 8976
 # automatic
 ?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
 # environment
@@ -294,6 +294,6 @@ build:
 # strcache performance: lookups = 33 / hit rate = 18%
 # hash-table stats:
 # Load=27/8192=0%, Rehash=0, Collisions=0/33=0%
-# Finished Make data base on Thu Apr 07 13:02:36 2022
+# Finished Make data base on Fri Apr 08 13:03:36 2022
 
  

@@ -269,6 +269,24 @@ func (eval *Evaluator) walkTree(node interface{}) (interface{}, ExceptionNode) {
 
 			return eval.walkTree(_node.Exported)
 		}
+	case DictNode:
+		{
+			// create the node somehow
+			_dict_eval_node := NewDict(int64(len(_node.Elements)))
+
+			// walk over the elements
+			for _, _element_ := range _node.Elements {
+				_value, _exception := eval.walkTree(_element_.Value)
+
+				if _exception.Type != NO_EXCEPTION {
+					return nil, _exception
+				}
+
+				_dict_eval_node.Put(_element_.Key.Value, _value)
+			}
+
+			return _dict_eval_node, ExceptionNode{Type: NO_EXCEPTION}
+		}
 	case IFNode:
 		{
 			_condition, _ := eval.walkTree(_node.Condition)
@@ -940,38 +958,58 @@ func (eval *Evaluator) walkTree(node interface{}) (interface{}, ExceptionNode) {
 			}
 
 			// we should also check the type of the stuff
+			switch _index_ := (_index_of_element_).(type) {
+			case StringNode:
+				{
+					_array, _exception := eval.walkTree(_node.Array)
 
-			if _index_, ok := _index_of_element_.(NumberNode); ok {
-				_array, _exception := eval.walkTree(_node.Array)
+					if _exception.Type != NO_EXCEPTION {
+						return nil, _exception
+					}
 
-				if _exception.Type != NO_EXCEPTION {
-					return nil, _exception
-				}
+					_dict_ := _array.(SymbolTableValue)
 
-				_array_ := _array.(SymbolTableValue)
+					if _implemented, ok := _dict_.Value.(DictEvalNode); ok {
+						switch _node.Type {
+						case NORMAL:
+							{
+								_return, _exception := _implemented.Get(_index_.Value)
 
-				if _implemented, ok := _array_.Value.(Getter); ok {
-					switch _node.Type {
-					case NORMAL:
-						{
-							_return := _implemented.Get(_index_.Value.Int64())
+								if _exception.Type != NO_EXCEPTION {
+									return nil, _exception
+								}
 
-							if _exception, ok := _return.(ExceptionNode); ok {
-								return nil, _exception
+								return _return, ExceptionNode{Type: NO_EXCEPTION}
 							}
-
-							return _return, ExceptionNode{Type: NO_EXCEPTION}
+						default:
+							return nil, ExceptionNode{
+								Type: INVALID_OPERATION_EXCEPTION,
+							}
 						}
-					case RANGE:
-						{
-							_end_index_, exception := eval.walkTree(_node.EndIndex)
+					}
 
-							if exception.Type != NO_EXCEPTION {
-								return nil, exception
-							}
+					// we have a string
+					// this is a dict access (:))
+					return nil, ExceptionNode{
+						Type:    INVALID_OPERATION_EXCEPTION,
+						Message: "Object is not a dict | does not exist",
+					}
+				}
+			case NumberNode:
+				{
+					_array, _exception := eval.walkTree(_node.Array)
 
-							if _eIndex_, ok := _end_index_.(NumberNode); ok {
-								_return := _implemented.Range(_index_.Value.Int64(), _eIndex_.Value.Int64())
+					if _exception.Type != NO_EXCEPTION {
+						return nil, _exception
+					}
+
+					_array_ := _array.(SymbolTableValue)
+
+					if _implemented, ok := _array_.Value.(Getter); ok {
+						switch _node.Type {
+						case NORMAL:
+							{
+								_return := _implemented.Get(_index_.Value.Int64())
 
 								if _exception, ok := _return.(ExceptionNode); ok {
 									return nil, _exception
@@ -979,21 +1017,39 @@ func (eval *Evaluator) walkTree(node interface{}) (interface{}, ExceptionNode) {
 
 								return _return, ExceptionNode{Type: NO_EXCEPTION}
 							}
+						case RANGE:
+							{
+								_end_index_, exception := eval.walkTree(_node.EndIndex)
+
+								if exception.Type != NO_EXCEPTION {
+									return nil, exception
+								}
+
+								if _eIndex_, ok := _end_index_.(NumberNode); ok {
+									_return := _implemented.Range(_index_.Value.Int64(), _eIndex_.Value.Int64())
+
+									if _exception, ok := _return.(ExceptionNode); ok {
+										return nil, _exception
+									}
+
+									return _return, ExceptionNode{Type: NO_EXCEPTION}
+								}
+							}
 						}
 					}
-				}
 
-				// fmt.Errorf("Failed to fetch element at the given index")
-				return nil, ExceptionNode{
-					Type:    INVALID_INDEX_EXCEPTION,
-					Message: fmt.Sprintf("Failed to fetch element at the given index '%s'", Print(_index_)),
+					// fmt.Errorf("Failed to fetch element at the given index")
+					return nil, ExceptionNode{
+						Type:    INVALID_INDEX_EXCEPTION,
+						Message: fmt.Sprintf("Failed to fetch element at the given index '%s'", Print(_index_)),
+					}
 				}
 			}
 
 			// ensure the _index_of_element is a number node else return an error node
 			return nil, ExceptionNode{
 				Type:    INVALID_OPERATION_EXCEPTION,
-				Message: fmt.Sprint("Given index expression does not evaluate to a number"),
+				Message: fmt.Sprint("Given index expression does not evaluate to a number or string"),
 			}
 		}
 	case Assignment:

@@ -1,5 +1,9 @@
-fun sample(name) {
-    return "This is the sum of the stuff {67 + name}"
-}
-
-print(sample(78))
+def sample = [
+    {
+        name: "john",
+        age: 24,
+        compute: fun () {
+            return "Hello World"
+        }
+    }
+]

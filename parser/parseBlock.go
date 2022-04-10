@@ -1,6 +1,8 @@
 package parser
 
 import (
+	"fmt"
+
 	"github.com/BEN00262/simpleLang/lexer"
 )
 
@@ -24,6 +26,8 @@ func (parser *Parser) parseBlockScope() BlockNode {
 	)
 
 	blockStatements := parser._parseBlockStatements()
+
+	fmt.Println(blockStatements)
 
 	parser.IsExpectedEatElsePanic(
 		parser.CurrentToken(),

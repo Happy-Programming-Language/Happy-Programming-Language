@@ -1,4 +1,4 @@
-fun fizzbuzz(number) {
+expose fun fizzbuzz(number) {
     if number%3 == 0 {
         if number%5 == 0 {
             return "fizzbuzz"
@@ -22,7 +22,7 @@ router(
     }
 )
 
-for (def counter = 0; counter < 20; counter + 1) {
+for (def counter = 1; counter < 20; counter + 1) {
     if counter%3 == 0 {
         if counter%5 == 0 {
             print("fizzbuzz ====> {counter}")

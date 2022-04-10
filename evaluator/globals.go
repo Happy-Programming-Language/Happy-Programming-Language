@@ -1,6 +1,7 @@
 package evaluator
 
 import (
+	"bufio"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -205,6 +206,19 @@ var (
 
 					fmt.Println()
 					return NilNode{}, ExceptionNode{Type: NO_EXCEPTION}
+				},
+			},
+		},
+		// read terminal input
+		"read": SymbolTableValue{
+			Type: EXTERNALFUNC,
+			Value: ExternalFunctionNode{
+				Name:       "read",
+				ParamCount: 0,
+				Function: func(values ...*interface{}) (interface{}, ExceptionNode) {
+					reader := bufio.NewReader(os.Stdin)
+					text := get(reader)
+					return StringNode{Value: text}, ExceptionNode{Type: NO_EXCEPTION}
 				},
 			},
 		},

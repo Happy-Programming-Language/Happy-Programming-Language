@@ -38,12 +38,19 @@ func REPL() {
 
 	printRepl()
 	text := get(reader)
+
 	for ; shouldContinue(text); text = get(reader) {
 		lexer := InitLexer(text)
 		parser := InitParser(lexer.Lex(), lexer.SplitCode)
 		fmt.Println(Print(evaluator.ReplExecute(parser.Parse())))
 		printRepl()
 	}
+
+	// defer func() {
+	// 	if err := recover(); err != nil {
+	// 		log.Println("panic occurred:", err)
+	// 	}
+	// }()
 
 	evaluator.TearDownRepl()
 	fmt.Println("Bye!")
