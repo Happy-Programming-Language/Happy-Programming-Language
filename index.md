@@ -1,37 +1,77 @@
-## Welcome to GitHub Pages
+# Happy Programming Language
+> The language is still being heavily developed any bugs, bad coding practices etc will be corrected in due time
+> This is a simple experimental programming language that am literally intended for it to become big :)
 
-You can use the [editor on GitHub](https://github.com/Happy-Programming-Language/Happy-Programming-Language/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+#### BUGS
+> The parser is not well implemented yet, the evaluator has massive code repetitions and alot more but hey it works :)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+#### hello world
+```kotlin
+print("Hello world")
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+# FEATURES
 
-### Jekyll Themes
+> objects | dicts
+```kotlin
+def sample = {
+        name: "john",
+        age: 24,
+        compute: fun () {
+            return "Hello World"
+        }
+    }
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Happy-Programming-Language/Happy-Programming-Language/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+print(sample["name"]) #prints 'john'
+```
 
-### Support or Contact
+> exception handling
+```kotlin
+def InvalidCallback = "InvalidCallback"
+def InvalidArgumentType = "InvalidArgumentType"
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+fun takesACallback(age, callback) {
+    if age < 18 {
+        # a one for introspection ---> improve it though
+        if type(callback) != "function" {
+            raise Exception(InvalidCallback, "Expected a callback")
+        }
+
+        return callback(age)
+    }
+
+    return nil
+}
+
+# we can catch exceptions
+fun demoExceptionHandling(throw) {
+    if type(throw) != "boolean" {
+        raise Exception(InvalidArgumentType, "throw should be a boolean")
+    }
+
+    try {
+         if throw {
+            print(takesACallback (12, 8))
+        }
+
+        # this is a correct execution
+
+        print(takesACallback (12, fun (age) {
+            print("we are in the callback")
+            return age
+        }))
+    } catch(error) {
+        if type(error) == InvalidCallback {
+            print("caught the error: {error[0]}")
+        } else {
+            raise error
+        }
+    }
+}
+
+# throw the exception
+demoExceptionHandling(true)
+
+# dont throw the exception
+demoExceptionHandling(false)
+```
